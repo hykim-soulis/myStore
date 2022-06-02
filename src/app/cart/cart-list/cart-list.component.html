@@ -1,0 +1,28 @@
+<div class="container mb-3">
+  <div class="row col-md-12 mx-auto">
+    <div class="col-md-6 my-auto">
+      <img
+        src="{{ item.url }}"
+        class="rounded"
+        alt="{{ item.name }}"
+        style="max-width: 100%"
+      />
+    </div>
+    <div class="col-md-6 my-auto">
+      <h5>{{ item.name }}</h5>
+      <h6>${{ item.price }}</h6>
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <label for="quantity">Quantity: </label>
+        <input
+          type="number"
+          min="0"
+          value="1"
+          name="quantity"
+          id="quantity"
+          style="width: 40px; margin-left: 5px"
+        />
+      </form>
+    </div>
+  </div>
+  <hr />
+</div>

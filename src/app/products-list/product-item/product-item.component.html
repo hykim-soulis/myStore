@@ -1,0 +1,26 @@
+<div class="card mb-3" style="width: 100%">
+  <div class="card-body text-center">
+    <div style="cursor: pointer">
+      <img
+        src="{{ item.url }}"
+        class="card-img-top"
+        alt="{{ item.name }}"
+        style="max-width: 100%"
+      />
+      <h5 class="card-title">{{ item.name }}</h5>
+    </div>
+    <p class="card-text mb-2">${{ item.price }}</p>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <label for="quantity">Quantity: </label>
+      <input
+        type="number"
+        min="1"
+        value="1"
+        name="quantity"
+        id="quantity"
+        style="width: 50px; margin-left: 10px"
+      />
+      <button class="btn btn-primary mt-3" type="submit">Add To Cart</button>
+    </form>
+  </div>
+</div>

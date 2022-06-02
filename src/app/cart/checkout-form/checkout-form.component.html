@@ -1,0 +1,32 @@
+<h3>Check-out</h3>
+<hr />
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <label class="mb-1" for="fullName">Full name</label>
+  <input
+    type="text"
+    name="fullName"
+    placeholder="(minimum 3 characters)"
+    class="mb-3"
+    style="display: block"
+  />
+  <label class="mb-1" for="address">Address</label>
+  <input
+    type="text"
+    name="address"
+    placeholder="(minimum 6 characters)"
+    class="mb-3"
+    style="display: block"
+  />
+  <label class="mb-1" for="creditCard">Credit card number</label>
+  <input
+    type="text"
+    name="creditCard"
+    placeholder="(16-digit number)"
+    class="mb-3"
+    style="display: block"
+  />
+  <p>We'll never share your payment details with anyone else.</p>
+  <button class="btn btn-primary my-3" style="display: block" type="submit">
+    Submit
+  </button>
+</form>
