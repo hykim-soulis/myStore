@@ -6,15 +6,7 @@ import { Product } from '../Model/Product';
   providedIn: 'root',
 })
 export class CartService {
-  cartList: CartItem[] = [
-    {
-      id: 6,
-      name: 'Shirt',
-      price: 29.99,
-      url: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80',
-      quantity: 4,
-    },
-  ];
+  cartList: CartItem[] = [];
   totalPrice: number = 0;
   constructor() {}
 
