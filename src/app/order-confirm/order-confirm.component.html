@@ -1,7 +1,9 @@
 <div class="text-center mt-4">
   <h2>Success! 🎉</h2>
-  <p>Thank you name!</p>
-  <p>Your $300 order is confirmed!</p>
+  <p>Thank you {{ fullName }}!</p>
+  <p>Your ${{ totalPrice }} order is confirmed!</p>
   <p>Please allow 1-3 business day(s) for shipping</p>
-  <button class="btn btn-primary">Back to Products List</button>
+  <button class="btn btn-primary" routerLink="/products-list">
+    Back to Products List
+  </button>
 </div>

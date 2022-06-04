@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/cart/cart.service';
+import { CartItem } from 'src/app/Model/CartItem';
 import { Product } from 'src/app/Model/Product';
+import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -8,7 +11,11 @@ import { Product } from 'src/app/Model/Product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() item: Product;
-  constructor() {
+  quantity: number;
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {
     this.item = {
       id: 1,
       name: '',
@@ -16,9 +23,28 @@ export class ProductItemComponent implements OnInit {
       url: '',
       description: '',
     };
+    this.quantity = 1;
   }
 
   ngOnInit(): void {}
 
-  onSubmit() {}
+  goToProductDetail(item: Product) {
+    this.productService.selectedProduct = item;
+  }
+
+  addToCart(item: Product, quantity: number) {
+    const goCartItem: CartItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      url: item.url,
+      quantity: quantity,
+    };
+    this.cartService.addToCart(goCartItem);
+    alert(`
+      The item has been added to your cart!
+        item: ${item.name}
+        quantity: ${quantity}
+    `);
+  }
 }

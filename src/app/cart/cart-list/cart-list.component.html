@@ -11,17 +11,34 @@
     <div class="col-md-6 my-auto">
       <h5>{{ item.name }}</h5>
       <h6>${{ item.price }}</h6>
-      <form (ngSubmit)="onSubmit()" #form="ngForm">
-        <label for="quantity">Quantity: </label>
-        <input
-          type="number"
-          min="0"
-          value="1"
-          name="quantity"
-          id="quantity"
-          style="width: 40px; margin-left: 5px"
-        />
-      </form>
+
+      <label for="quantity">Quantity: </label>
+      <select
+        name="quantity"
+        style="width: 40px; margin-left: 5px"
+        [value]="item.quantity"
+        [(ngModel)]="item.quantity"
+        (change)="onUpdate(item)"
+      >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <!-- type="number" min="0" [(ngModel)]="quantity" name="quantity"
+        style="width: 40px; margin-left: 5px" (change)="onUpdate()" /> -->
+      </select>
+
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm mt-3"
+        (click)="onDelete(item)"
+      >
+        Delete
+      </button>
     </div>
   </div>
   <hr />

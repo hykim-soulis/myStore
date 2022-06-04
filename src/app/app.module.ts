@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductItemDetailComponent } from './product-item-detail/product-item-detail.component';
 import { CartListComponent } from './cart/cart-list/cart-list.component';
 import { CheckoutFormComponent } from './cart/checkout-form/checkout-form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,14 @@ import { CheckoutFormComponent } from './cart/checkout-form/checkout-form.compon
     CartListComponent,
     CheckoutFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+  ],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

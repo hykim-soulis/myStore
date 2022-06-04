@@ -1,5 +1,11 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CartService } from '../cart/cart.service';
+import { CartItem } from '../Model/CartItem';
+
 import { Product } from '../Model/Product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -8,7 +14,15 @@ import { Product } from '../Model/Product';
 })
 export class ProductItemDetailComponent implements OnInit {
   item: Product;
-  constructor() {
+  id: number;
+  quantity: number;
+
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.item = {
       id: 1,
       name: '',
@@ -16,16 +30,31 @@ export class ProductItemDetailComponent implements OnInit {
       url: '',
       description: '',
     };
+    this.id = 1;
+    this.quantity = 1;
   }
 
   ngOnInit(): void {
-    this.item = {
-      id: 1,
-      name: 'Book',
-      price: 9.99,
-      url: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      description: 'You can read it!',
-    };
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+    });
+    this.item = this.productService.selectedProduct;
+    console.log(this.item, 'ngoninit');
   }
-  onSubmit() {}
+
+  addToCart(item: Product, quantity: number) {
+    const goCartItem: CartItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      url: item.url,
+      quantity: quantity,
+    };
+    this.cartService.addToCart(goCartItem);
+    alert(`
+      The item has been added to your cart!
+        item: ${item.name}
+        quantity: ${quantity}
+    `);
+  }
 }

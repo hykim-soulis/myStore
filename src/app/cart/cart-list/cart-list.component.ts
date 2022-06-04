@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/Model/Product';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { CartItem } from 'src/app/Model/CartItem';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -7,17 +8,30 @@ import { Product } from 'src/app/Model/Product';
   styleUrls: ['./cart-list.component.css'],
 })
 export class CartListComponent implements OnInit {
-  @Input() item: Product;
-  constructor() {
+  @Input() item: CartItem;
+  @Output() updatedList: EventEmitter<CartItem> = new EventEmitter();
+  constructor(private cartService: CartService) {
     this.item = {
       id: 1,
       name: '',
       price: 1,
       url: '',
-      description: '',
+      quantity: 1,
     };
   }
 
   ngOnInit(): void {}
-  onSubmit() {}
+  onUpdate(item: CartItem) {
+    this.cartService.updateCart(item);
+    this.updatedList.emit();
+    alert(`
+      The item has been updated!
+        item: ${item.name}
+        quantity: ${item.quantity}
+    `);
+  }
+  onDelete(item: CartItem) {
+    this.cartService.deleteItem(item);
+    this.updatedList.emit();
+  }
 }

@@ -12,25 +12,24 @@
       <h3>{{ item.name }}</h3>
       <h6>${{ item.price }}</h6>
       <p>{{ item.description }}</p>
-      <form (ngSubmit)="onSubmit()" #form="ngForm">
-        <label for="quantity">Quantity: </label>
-        <input
-          type="number"
-          min="1"
-          value="1"
-          name="quantity"
-          id="quantity"
-          style="width: 50px; margin-left: 10px"
-        />
-        <button
-          class="btn btn-primary my-3"
-          style="display: block"
-          type="submit"
-        >
-          Add To Cart
-        </button>
-      </form>
-      <a href="">← Back to products list</a>
+
+      <label for="quantity">Quantity: </label>
+      <input
+        type="number"
+        min="1"
+        name="quantity"
+        [(ngModel)]="quantity"
+        style="width: 50px; margin-left: 10px"
+      />
+      <button
+        class="btn btn-primary my-3"
+        style="display: block"
+        type="submit"
+        (click)="addToCart(item, quantity)"
+      >
+        Add To Cart
+      </button>
+      <a routerLink="/products-list">← Back to products list</a>
     </div>
   </div>
 </div>

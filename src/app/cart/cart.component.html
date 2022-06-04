@@ -1,14 +1,26 @@
 <div class="container mt-5">
   <div class="row col-md-9 mx-auto">
     <div class="col-md-6">
+      <h3
+        *ngIf="totalPrice === 0"
+        class="btn btn-outline-success"
+        style="cursor: pointer"
+        routerLink="/products-list"
+      >
+        🛒 Start Shopping!
+      </h3>
+      <hr />
       <app-cart-list
         *ngFor="let cartItem of cartItems"
         [item]="cartItem"
+        (updatedList)="updateTotalPrice()"
       ></app-cart-list>
-      <h2 class="row col-md-10 mx-auto">Total: $269.94</h2>
+      <h2 class="row col-md-10 mx-auto" *ngIf="totalPrice > 0">
+        Total: ${{ totalPrice }}
+      </h2>
     </div>
     <div class="col-md-6">
-      <app-checkout-form></app-checkout-form>
+      <app-checkout-form (orderSubmit)="getOrder($event)"></app-checkout-form>
     </div>
   </div>
 </div>
