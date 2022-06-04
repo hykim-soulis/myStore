@@ -33,5 +33,10 @@ export class CartListComponent implements OnInit {
   onDelete(item: CartItem) {
     this.cartService.deleteItem(item);
     this.updatedList.emit();
+    alert(`
+      The item has been deleted!
+        item: ${item.name}
+        quantity: ${item.quantity}
+    `);
   }
 }
